@@ -6,6 +6,8 @@
         This standard has been tested to work with PHP_CodeSniffer 3.3.1.
     </description>
 
+    <config name="installed_paths" value="../../slevomat/coding-standard"/>
+
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
@@ -157,7 +159,7 @@
     <rule ref="Production.Commenting.FunctionComment"/>
 
     <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
+    <!--<rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>-->
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
@@ -171,29 +173,29 @@
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEmpty"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
-    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
-    <rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
+    <!--<rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>-->
+    <!--<rule ref="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>-->
     <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
-    <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
-    <rule ref="SlevomatCodingStandard.Functions.UnusedParameter"/>
+    <!--<rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>-->
+    <!--<rule ref="SlevomatCodingStandard.Functions.UnusedParameter"/>-->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
-    <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
-    <rule ref="SlevomatCodingStandard.Variables.UnusedVariable"/>
+    <!--<rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>-->
+    <!--<rule ref="SlevomatCodingStandard.Variables.UnusedVariable"/>-->
     <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
-    <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
+    <!--<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>-->
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
-        <properties>
-            <property name="linesCountBeforeFirstUse" value="1"/>
-            <property name="linesCountBetweenUses" value="0"/>
-            <property name="linesCountAfterLastUse" value="1"/>
-            <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
-        </properties>
-    </rule>
+    <!--<rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>-->
+    <!--<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">-->
+    <!--<properties>-->
+    <!--<property name="linesCountBeforeFirstUse" value="1"/>-->
+    <!--<property name="linesCountBetweenUses" value="0"/>-->
+    <!--<property name="linesCountAfterLastUse" value="1"/>-->
+    <!--<property name="linesCountAfterLastUseWhenLastInClass" value="0"/>-->
+    <!--</properties>-->
+    <!--</rule>-->
     <rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses"/>
     <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
     <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
@@ -215,5 +217,5 @@
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
     <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration"/>
     <rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
-    <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
+    <!--<rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>-->
 </ruleset>
