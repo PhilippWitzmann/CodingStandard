@@ -9,7 +9,7 @@ use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * @author                    Safak Ozpinar <safak@gamegos.com>
- * @author                    Philipp Witzmann <philipp.witzmann@sh.de>
+ * @author                    Philipp Witzmann <witzmann@contsult.com>
  * @codingStandardsIgnoreFile duplicated vendor code. Removed requiring parameter, throws comment
  * @SuppressWarnings(PHPMD) duplicated vendor code. Removed requiring parameter, throws comment
  */
@@ -54,10 +54,10 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
         $find   = Tokens::$methodPrefixes;
         $find[] = T_WHITESPACE;
 
-        $methodName = $phpcsFile->getDeclarationName($stackPtr);
+        $methodName      = $phpcsFile->getDeclarationName($stackPtr);
         $isSpecialMethod = preg_match('/^__construct/m', $methodName) === 1
-                           ||preg_match('/^__destruct/m', $methodName) === 1
-                           ||preg_match('/^(get|set|inject|test)[A-Z]/', $methodName) === 1;
+                           || preg_match('/^__destruct/m', $methodName) === 1
+                           || preg_match('/^(get|set|inject|test)[A-Z]/', $methodName) === 1;
 
         if ($isSpecialMethod)
         {
@@ -78,7 +78,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
             }
         }
 
-        if ($tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG
+        if (
+            $tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG
             && $tokens[$commentEnd]['code'] !== T_COMMENT
         )
         {
@@ -123,7 +124,6 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
         $this->processReturn($phpcsFile, $stackPtr, $commentStart);
         $this->processThrows($phpcsFile, $stackPtr, $commentStart);
         $this->processParams($phpcsFile, $stackPtr, $commentStart);
-
     }//end process()
 
     /**
@@ -230,7 +230,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                         $endToken = $tokens[$stackPtr]['scope_closer'];
                         for ($returnToken = $stackPtr; $returnToken < $endToken; $returnToken++)
                         {
-                            if ($tokens[$returnToken]['code'] === T_CLOSURE
+                            if (
+                                $tokens[$returnToken]['code'] === T_CLOSURE
                                 || $tokens[$returnToken]['code'] === T_ANON_CLASS
                             )
                             {
@@ -238,7 +239,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                                 continue;
                             }
 
-                            if ($tokens[$returnToken]['code'] === T_RETURN
+                            if (
+                                $tokens[$returnToken]['code'] === T_RETURN
                                 || $tokens[$returnToken]['code'] === T_YIELD
                                 || $tokens[$returnToken]['code'] === T_YIELD_FROM
                             )
@@ -269,7 +271,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                         $endToken = $tokens[$stackPtr]['scope_closer'];
                         for ($returnToken = $stackPtr; $returnToken < $endToken; $returnToken++)
                         {
-                            if ($tokens[$returnToken]['code'] === T_CLOSURE
+                            if (
+                                $tokens[$returnToken]['code'] === T_CLOSURE
                                 || $tokens[$returnToken]['code'] === T_ANON_CLASS
                             )
                             {
@@ -277,7 +280,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                                 continue;
                             }
 
-                            if ($tokens[$returnToken]['code'] === T_RETURN
+                            if (
+                                $tokens[$returnToken]['code'] === T_RETURN
                                 || $tokens[$returnToken]['code'] === T_YIELD
                                 || $tokens[$returnToken]['code'] === T_YIELD_FROM
                             )
@@ -312,8 +316,10 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
             if (!$tColonPosition)
             {
                 $error = 'Missing @return tag in function comment';
-                $phpcsFile->addError($error, $tokens[$commentStart]['comment_closer'],
-                                     'Production.Commenting.FunctionComment.MissingReturn');
+                $phpcsFile->addError(
+                    $error, $tokens[$commentStart]['comment_closer'],
+                    'Production.Commenting.FunctionComment.MissingReturn'
+                );
             }
         }//end if
 
@@ -327,7 +333,7 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
      */
     public function processParams(File $phpcsFile, $stackPtr, $commentStart)
     {
-        Common::$allowedTypes = array_unique(
+        self::$allowedTypes = array_unique(
             array_merge(
                 Common::$allowedTypes,
                 [
@@ -367,8 +373,10 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
             if ($tokens[($tag + 2)]['code'] === T_DOC_COMMENT_STRING)
             {
                 $matches = [];
-                preg_match('/([^$&.]+)(?:((?:\.\.\.)?(?:\$|&)[^\s]+)(?:(\s+)(.*))?)?/', $tokens[($tag +
-                                                                                                 2)]['content'], $matches);
+                preg_match(
+                    '/([^$&.]+)(?:((?:\.\.\.)?(?:\$|&)[^\s]+)(?:(\s+)(.*))?)?/', $tokens[($tag +
+                                                                                          2)]['content'], $matches
+                );
 
                 if (empty($matches) === false)
                 {
@@ -500,7 +508,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                         ];
 
                         $errorCode = 'TypeHintMissing';
-                        if ($suggestedTypeHint === 'string'
+                        if (
+                            $suggestedTypeHint === 'string'
                             || $suggestedTypeHint === 'int'
                             || $suggestedTypeHint === 'float'
                             || $suggestedTypeHint === 'bool'
@@ -566,7 +575,8 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                     // Fix up the indent of additional comment lines.
                     foreach ($param['commentLines'] as $lineNum => $line)
                     {
-                        if ($lineNum === 0
+                        if (
+                            $lineNum === 0
                             || $param['commentLines'][$lineNum]['indent'] === 0
                         )
                         {
@@ -731,7 +741,6 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
 
     /**
      * Returns a valid variable type for param/var tag.
-     *
      * If type is not one of the standard type, it must be a custom type.
      * Returns the correct type name suggestion if type name is invalid.
      *
