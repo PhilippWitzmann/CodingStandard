@@ -546,7 +546,7 @@ class FunctionCommentSniff extends PHP_CS_FunctionCommentSniff
                 }//end if
             }//end foreach
 
-            $suggestedType = implode($suggestedTypeNames, '|');
+            $suggestedType = implode('|', $suggestedTypeNames);
             if ($param['type'] !== $suggestedType)
             {
                 $error = 'Expected "%s" but found "%s" for parameter type';
